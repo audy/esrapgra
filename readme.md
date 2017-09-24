@@ -3,6 +3,38 @@
 The opposite of argparse. Converts function arguments to command-line
 arguments.
 
+## Examples
+
+
+```python
+res = esrapgra(
+        'bleep',
+        'bloop',
+        some_argument=21,
+        another_argument=1000
+        )
+
+# returns:
+
+'--some-argument=21 --another-argument=1000 bleep bloop'
+
+
+# you can customize as well
+
+esrapgra(
+  'some',
+  'arguments',
+  test_parameter=5,
+  _separator='_',
+  _prefix='-',
+  _kwargs_last=False
+)
+
+# returns:
+
+'some arguments -test_parameter=5'
+```
+
 ## License
 
 The MIT License (MIT)
