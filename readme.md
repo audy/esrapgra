@@ -3,6 +3,43 @@
 The opposite of argparse. Converts function arguments to command-line
 arguments.
 
+## Why'd you make this?
+
+
+Sometimes I have to write wrappers for command-line tools. I find myself often
+writing code like:
+
+
+```python
+
+cmd = [
+  '--some-argument', some_value,
+  '--another-argument',
+  'more',
+  'arguments',
+]
+
+subprocess.run(cmd)
+
+```
+
+Now I can do
+
+```python
+
+subprocess.run(
+  esrapgra(
+    some_argument=some_value,
+    another_argument=True,
+    'more',
+    'arguments'
+  )
+)
+```
+
+... which is a bit nicer :)
+
+
 ## Examples
 
 
