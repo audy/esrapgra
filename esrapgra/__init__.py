@@ -17,14 +17,21 @@ def esrapgra(*args, **kwargs):
     final_arguments = []
 
     for k, v in kwargs.items():
-        final_arguments.append(
-                ('{}{}={}'.format(
-                    _prefix,
-                    k.replace('_', _separator),
-                    v
+
+        if type(v) == bool:
+            if v == True:
+                final_arguments.append('{}{}'.format(_prefix, k.replace('_', _separator)))
+            else:
+                pass # skip argument
+        else:
+            final_arguments.append(
+                    ('{}{}={}'.format(
+                        _prefix,
+                        k.replace('_', _separator),
+                        v
+                    )
+                    )
                 )
-                )
-            )
 
     if _kwargs_last:
         [ final_arguments.append(arg) for arg in args ]

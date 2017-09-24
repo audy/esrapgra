@@ -1,26 +1,49 @@
 #!/usr/bin/env python3
 
+import unittest
 from esrapgra import esrapgra
 
-def test_that_it_esrapgras():
-    res = esrapgra(
-            'bleep',
-            'bloop',
-            some_argument=21,
-            another_argument=1000
-            )
+class TestEsrapgra(unittest.TestCase):
 
-    assert res == '--some-argument=21 --another-argument=1000 bleep bloop'
+    def test_that_it_esrapgras(self):
+        res = esrapgra(
+                'bleep',
+                'bloop',
+                some_argument=21,
+                another_argument=1000,
+                bool_argument=True
+                )
 
+        self.assertEqual(
+                '--some-argument=21 --another-argument=1000 --bool-argument bleep bloop',
+                res
+                )
 
-def test_kwargs_last():
+    def test_that_it_bools_false(self):
+        res = esrapgra(
+                'bleep',
+                'bloop',
+                some_argument=21,
+                another_argument=1000,
+                bool_argument=False
+                )
 
-    res = esrapgra(
-            'bleep',
-            'bloop',
-            some_argument=21,
-            another_argument=1000,
-            _kwargs_last=False
-            )
+        self.assertEqual(
+                '--some-argument=21 --another-argument=1000 bleep bloop',
+                res
+                )
 
-    assert res == 'bloop bleep --some-argument=21 --another-argument=1000'
+    def test_kwargs_last(self):
+
+        res = esrapgra(
+                'bleep',
+                'bloop',
+                some_argument=21,
+                another_argument=1000,
+                _kwargs_last=False
+                )
+
+        self.assertEqual(
+                'bloop bleep --some-argument=21 --another-argument=1000',
+                res
+                )

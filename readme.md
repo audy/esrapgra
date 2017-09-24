@@ -11,12 +11,13 @@ res = esrapgra(
         'bleep',
         'bloop',
         some_argument=21,
-        another_argument=1000
+        another_argument=1000,
+        bool_argument=True
         )
 
 # returns:
 
-'--some-argument=21 --another-argument=1000 bleep bloop'
+'--some-argument=21 --another-argument=1000 --bool-argument bleep bloop'
 
 
 # you can customize as well
