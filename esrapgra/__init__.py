@@ -11,8 +11,8 @@ def esrapgra(*args, **kwargs):
     _kwargs_last = kwargs.get('_kwargs_last', True)
 
     for kw in ['_separator', '_prefix', '_kwargs_last']:
-      if kw in kwargs:
-        del kwargs[kw]
+        if kw in kwargs:
+            del kwargs[kw]
 
     final_arguments = []
 
