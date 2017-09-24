@@ -29,10 +29,10 @@ Now I can do
 
 subprocess.run(
   esrapgra(
-    some_argument=some_value,
-    another_argument=True,
     'more',
-    'arguments'
+    'arguments',
+    some_argument=some_value,
+    another_argument=True
   )
 )
 ```
