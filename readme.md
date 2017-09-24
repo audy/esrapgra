@@ -17,7 +17,7 @@ res = esrapgra(
 
 # returns:
 
-'--some-argument=21 --another-argument=1000 --bool-argument bleep bloop'
+['--some-argument=21', '--another-argument=1000', '--bool-argument', 'bleep', 'bloop']
 
 
 # you can customize as well
@@ -34,7 +34,7 @@ esrapgra(
 
 # returns:
 
-'some arguments -test_parameter=5 -bool_argument'
+['some', 'arguments', '-test_parameter=5', '-bool_argument']
 ```
 
 ## License
