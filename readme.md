@@ -26,6 +26,7 @@ esrapgra(
   'some',
   'arguments',
   test_parameter=5,
+  bool_argument=True,
   _separator='_',
   _prefix='-',
   _kwargs_last=False
@@ -33,7 +34,7 @@ esrapgra(
 
 # returns:
 
-'some arguments -test_parameter=5'
+'some arguments -test_parameter=5 -bool_argument'
 ```
 
 ## License
