@@ -3,9 +3,6 @@ def esrapgra(*args, **kwargs):
     Convert function arguments to command-line arguments.
     '''
 
-    # copy dict so we can mess with it
-    kwargs = dict(kwargs)
-
     _separator = kwargs.get('_separator', '-')
     _prefix = kwargs.get('_prefix', '--')
     _kwargs_last = kwargs.get('_kwargs_last', True)
