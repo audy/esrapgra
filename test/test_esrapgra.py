@@ -20,7 +20,7 @@ def test_kwargs_last():
             'bloop',
             some_argument=21,
             another_argument=1000,
-            _kwargs_first=False
+            _kwargs_last=False
             )
 
     assert res == 'bloop bleep --some-argument=21 --another-argument=1000'
