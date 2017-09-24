@@ -38,4 +38,4 @@ def esrapgra(*args, **kwargs):
     else:
         [ final_arguments.insert(0, arg) for arg in args ]
 
-    return ' '.join(final_arguments)
+    return final_arguments
