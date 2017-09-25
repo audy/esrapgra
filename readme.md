@@ -31,7 +31,7 @@ Now I can do
 ```python
 
 subprocess.run(
-  ['program'] +
+  ['program'] + \
   esrapgra(
     'more',
     'arguments',
