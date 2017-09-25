@@ -6,3 +6,12 @@ python:
 
 install: pip install nose
 script: python -m nose
+
+deploy:
+  provider: pypi
+  user: "audyyy"
+  password:
+    secure: cZQnqCGQn8M5uN50Tz6fZNO4JZCTgcQj4Hxf71x/r/uSOxRyVlFEhWHV/JHvV55OUfGE5URl7Jlm9YL2tWg1uBjimGubi8AK3XcIDPfTRHGLdEmNKvosi8DdHPlQI6Emz/Pq7/ARjdT8rZk5EVHRUFvb1EAWoMUFXLd21xZVWI18dr8EdXkSK2w8/b45RB7741zol7ILXjWQvI+flhkxArKZthZyitgmQmwJ0typczhRPfVvBDVUL66skK4kKEcw3OwtM+Duj85z/GQ5qlyzaBDrzs+c9H1KZ31ZOEUzb/tGsQIE/8qNQERUSrBkHkyS9NISSjMwo+bJbctq2yX3Il3UEmIHLgSjSd9pAqrIzF9/9PsJEYNtnZ/IdX/2pyZhHitOlp1BxUYoksK5Nxg705Askqk4qW6/Sg8HjIhXbeEF4byT3TMcjomjX5SsKErGN6wpxWN4X0s6GvgWMqCDskCfeaw1cW6VDHRYtTYqpcixUfYlK0oLNcZ6M4l5Ncq0LqSjo5dXbqw2dLuuRa4Aoa8fPRH+ihCEtFUxHS/L0nxdxzwJBUlSCv/zroT1vSPCZMbiEu4yzVw7/eXIof0/mc/KFYT9q+jl27mdtw/Co/+5B784vY0wZNHSlmW+XitXZhUY6WExWyj/ruxE9TvP9JCZrYTHgv7b5D3U2oYv58g=
+  on:
+    tags: true
+  skip_upload_docs: true
