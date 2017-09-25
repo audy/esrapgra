@@ -1,5 +1,7 @@
 # Esrapgra
 
+[![Build Status](https://travis-ci.org/audy/esrapgra.svg?branch=master)](https://travis-ci.org/audy/esrapgra)
+
 The opposite of argparse. Converts function arguments to command-line
 arguments.
 
