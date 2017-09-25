@@ -15,6 +15,7 @@ writing code like:
 ```python
 
 cmd = [
+  'program',
   '--some-argument', some_value,
   '--another-argument',
   'more',
@@ -30,6 +31,7 @@ Now I can do
 ```python
 
 subprocess.run(
+  ['program'] +
   esrapgra(
     'more',
     'arguments',
