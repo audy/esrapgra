@@ -15,7 +15,7 @@ class TestEsrapgra(unittest.TestCase):
                 )
 
         self.assertEqual(
-                ['--some-argument=21', '--another-argument=1000', '--bool-argument', 'bleep', 'bloop'],
+                ['--another-argument=1000', '--bool-argument', '--some-argument=21', 'bleep', 'bloop'],
                 res
                 )
 
@@ -29,7 +29,7 @@ class TestEsrapgra(unittest.TestCase):
                 )
 
         self.assertEqual(
-                ['--some-argument=21', '--another-argument=1000', 'bleep', 'bloop'],
+                ['--another-argument=1000', '--some-argument=21', 'bleep', 'bloop'],
                 res
                 )
 
@@ -44,6 +44,6 @@ class TestEsrapgra(unittest.TestCase):
                 )
 
         self.assertEqual(
-                ['bloop', 'bleep', '--some-argument=21', '--another-argument=1000'],
+                ['bloop', 'bleep', '--another-argument=1000', '--some-argument=21'],
                 res
                 )

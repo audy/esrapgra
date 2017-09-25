@@ -33,6 +33,10 @@ def esrapgra(*args, **kwargs):
                     )
                 )
 
+    # since kwargs are stored in a dict we need to sort them to make sure that
+    # they're always in a consistent order (helps with testing)
+    final_arguments = sorted(final_arguments)
+
     # put in the non-flag arguments either at the beginning or end
     if _kwargs_last:
         [ final_arguments.append(arg) for arg in args ]
