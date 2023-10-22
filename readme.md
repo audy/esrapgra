@@ -70,7 +70,7 @@ esrap = Esrapgra(separator="_")
 
 ```python
 # Example usage
-esrap.lext_arguments(test_argument="test")  # Output: ['--test_argument="test"']
+esrap.lex_arguments(test_argument="test")  # Output: ['--test_argument="test"']
 ```
 
 ### Custom Prefix
@@ -84,7 +84,7 @@ esrap = Esrapgra(prefix="-")
 
 ```python
 # Example usage
-esrap.lext_arguments(test_argument="test")  # Output: ['-test_argument="test"']
+esrap.lex_arguments(test_argument="test")  # Output: ['-test_argument="test"']
 ```
 
 ### Keyword Arguments Position
@@ -98,7 +98,7 @@ esrap = Esrapgra(kwargs_last=False)
 
 ```python
 # Example usage
-esrap.lext_arguments(
+esrap.lex_arguments(
     "first_arg",
     test_argument="test"
 )
@@ -117,6 +117,6 @@ esrap = Esrapgra(quote_strings=False)
 ```python
 # Example usage
 
-# Adjust the expected output based on the implementation of `lext_arguments`
-esrap.lext_arguments(test_argument="test")
+# Adjust the expected output based on the implementation of `lex_arguments`
+esrap.lex_arguments(test_argument="test")
 ```
