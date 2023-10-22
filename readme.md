@@ -1,102 +1,122 @@
 # Esrapgra
 
-[![Build Status](https://travis-ci.org/audy/esrapgra.svg?branch=master)](https://travis-ci.org/audy/esrapgra)
-
 The opposite of argparse. Converts function arguments to command-line
 arguments.
 
-## Why'd you make this?
 
-
-Sometimes I have to write wrappers for command-line tools. I find myself often
-writing code like:
-
+Defining arguments for external commands can get messy. Especially if you need
+to interpolate values into the arguments or map Python logic into command
+logic:
 
 ```python
-
-cmd = [
-  'program',
-  '--some-argument', some_value,
-  '--another-argument',
-  'more',
-  'arguments',
+args = [
+    "http://example.com/file.zip",
+    "--directory-prefix",
+    directory_prefix,
+    f"--tries={tries}"
 ]
 
-subprocess.run(cmd)
+if retry_connrefused:
+    args.append("--retry-connrefused")
 
+
+subprocess.check_output(["wget"] + args)
 ```
 
-Now I can do
+With Esrapgra (if you can remember how to spell it), this becomes a nice
+function invocation:
 
 ```python
+es = Esrapgra(kwargs_last=True)
 
-subprocess.run(
-  ['program'] + \
-  esrapgra(
-    'more',
-    'arguments',
-    some_argument=some_value,
-    another_argument=True
-  )
+args = es.lex_arguments(
+    "http://example.com/file.zip",
+    directory_prefix="/path/to/directory",
+    retry_connrefused=True,
+    waitretry=5,
+    tries=3
 )
+
+# value of args:
+[
+   "http://example.com/file.zip",
+   "--directory-prefix=/path/to/directory",
+   "--retry-connrefused",
+   "--waitretry=5",
+   "--tries=3"
+]
+
+subprocess.run(["wget"] + args)
 ```
-
-... which is a bit nicer :)
-
 
 ## Examples
 
+### Basic Initialization
+
+You can initialize the `Esrapgra` object with default parameters:
 
 ```python
-res = esrapgra(
-        'bleep',
-        'bloop',
-        some_argument=21,
-        another_argument=1000,
-        bool_argument=True
-        )
-
-# returns:
-
-['--some-argument=21', '--another-argument=1000', '--bool-argument', 'bleep', 'bloop']
-
-
-# you can customize as well
-
-esrapgra(
-  'some',
-  'arguments',
-  test_parameter=5,
-  bool_argument=True,
-  _separator='_',
-  _prefix='-',
-  _kwargs_last=False
-)
-
-# returns:
-
-['some', 'arguments', '-test_parameter=5', '-bool_argument']
+esrap = Esrapgra()
 ```
 
-## License
+### Custom Separator
 
-The MIT License (MIT)
-Copyright (c) 2017 Austin Davis-Richardson
+Customize the separator between words in keyword arguments:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+```python
+# Using underscores as separators
+esrap = Esrapgra(separator="_")
+```
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+```python
+# Example usage
+esrap.lext_arguments(test_argument="test")  # Output: ['--test_argument="test"']
+```
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+### Custom Prefix
+
+Define a custom prefix for the keyword arguments:
+
+```python
+# Using a single hyphen as a prefix
+esrap = Esrapgra(prefix="-")
+```
+
+```python
+# Example usage
+esrap.lext_arguments(test_argument="test")  # Output: ['-test_argument="test"']
+```
+
+### Keyword Arguments Position
+
+Control the position of keyword arguments relative to positional arguments:
+
+```python
+# Putting keyword arguments before positional arguments
+esrap = Esrapgra(kwargs_last=False)
+```
+
+```python
+# Example usage
+esrap.lext_arguments(
+    "first_arg",
+    test_argument="test"
+)
+# Output: ['-test_argument="test"', 'first_arg']
+```
+
+### Quoting Strings
+
+You can enable or disable the quoting of strings as per your needs:
+
+```python
+# Disabling quoting of strings
+esrap = Esrapgra(quote_strings=False)
+```
+
+```python
+# Example usage
+
+# Adjust the expected output based on the implementation of `lext_arguments`
+esrap.lext_arguments(test_argument="test")
+```
