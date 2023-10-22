@@ -18,13 +18,10 @@ def test_basic():
 
 def test_quote_strings():
     esrapgra = Esrapgra(quote_strings=True)
-    assert esrapgra.lex_arguments(test="asdf") == ['--test="asdf"']
-
-    esrapgra = Esrapgra(quote_strings=True, quote_char="X")
-    assert esrapgra.lex_arguments(test="asdf") == ["--test=XasdfX"]
+    assert esrapgra.lex_arguments(test="asdf; * asdf") == ["--test='asdf; * asdf'"]
 
     esrapgra = Esrapgra(quote_strings=False)
-    assert esrapgra.lex_arguments(test="asdf") == ["--test=asdf"]
+    assert esrapgra.lex_arguments(test="asdf; * asdf") == ["--test=asdf; * asdf"]
 
 
 @pytest.mark.parametrize("bool_argument_value", [(True), (False)])

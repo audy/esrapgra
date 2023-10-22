@@ -1,4 +1,5 @@
 from typing import List
+import shlex
 
 
 class Esrapgra:
@@ -9,6 +10,7 @@ class Esrapgra:
         kwargs_last: bool = False,
         quote_strings: bool = True,
         quote_char: str = '"',
+        escape_strings: bool = True,
     ):
         """
         Initializes the Esrapgra object with various configuration options.
@@ -50,7 +52,6 @@ class Esrapgra:
         self.prefix = prefix
         self.kwargs_last = kwargs_last
         self.quote_strings = quote_strings
-        self.quote_char = quote_char
 
     def lex_arguments(self, *args, **kwargs) -> List[str]:
         """
@@ -70,7 +71,7 @@ class Esrapgra:
                     pass  # skip argument if it's boolean and False
             else:
                 if type(value) == str and self.quote_strings:
-                    value = f"{self.quote_char}{value}{self.quote_char}"
+                    value = shlex.quote(value)
                 # these are regular arguments
                 final_arguments.append(f"{self.prefix}{keyword}={value}")
 

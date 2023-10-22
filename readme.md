@@ -19,9 +19,20 @@ pip install git+https://github.com/audy/esrapgra
 
 ## Overview
 
-Defining arguments for external commands can get messy. Especially if you need
-to interpolate values into the arguments or map Python logic into command
-logic:
+So you want to call `wget` from Python, mapping Python variables to
+command-line arguments:
+
+```sh
+wget \
+   http://example.com/file.zip \
+   --directory-prefix=/path/to/directory \
+   --retry-connrefused \
+   --waitretry=5 \
+   --tries=3
+```
+
+This often gets messy if you need to interpolate values into the arguments or
+map Python logic into command logic:
 
 ```python
 args = [
@@ -52,17 +63,17 @@ args = es.lex_arguments(
     tries=3
 )
 
-# value of args:
-[
-   "http://example.com/file.zip",
-   "--directory-prefix=/path/to/directory",
-   "--retry-connrefused",
-   "--waitretry=5",
-   "--tries=3"
-]
-
-subprocess.run(["wget"] + args)
+subprocess.check_output(["wget"] + args)
 ```
+
+The following things are happening:
+
+- String arguments are automatically escaped and quote to protect against
+  shell-escape attacks
+- Boolean arguments are automatically turned into boolean flags (e.g.,
+  `retry_connrefused=True` turns into `--retry-connrefused` and
+  `retry_connrefused=False` turns into nothing)
+- Numeric flags are automatically converted into strings
 
 ## Examples
 
