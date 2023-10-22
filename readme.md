@@ -1,5 +1,7 @@
 # Esrapgra
 
+[![Test](https://github.com/audy/esrapgra/actions/workflows/test.yml/badge.svg)](https://github.com/audy/esrapgra/actions/workflows/test.yml)
+
 The opposite of argparse. Converts function arguments to command-line
 arguments.
 
