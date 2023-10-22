@@ -5,6 +5,19 @@
 The opposite of argparse. Converts function arguments to command-line
 arguments.
 
+## Installation
+
+```
+pip install esrapgra
+```
+
+From source
+
+```
+pip install git+https://github.com/audy/esrapgra
+```
+
+## Overview
 
 Defining arguments for external commands can get messy. Especially if you need
 to interpolate values into the arguments or map Python logic into command
